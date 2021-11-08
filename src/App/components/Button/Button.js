@@ -7,6 +7,11 @@ const Button = (props) => {
 };
 Button.propTypes={
     children: PropTypes.any.isRequired,
-    onButtonClick: PropTypes.func.isRequired
+    onButtonClick: PropTypes.func.isRequired,
+    bgColor: PropTypes.string.isRequired,
+}
+Button.defaultProps={
+    children:'Text du button manquant',
+    bgColor: 'skyblue'
 }
 export default Button;
