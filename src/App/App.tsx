@@ -6,7 +6,9 @@ import Button from './components/Button/Button';
 function App() {
   return (
     <div className="App">
-      <Button><div>Balise</div><div>Balise 2</div></Button>
+      <Button onButtonClick={(arg)=>{
+        console.log('Le button de App est clické', arg);
+      }}><div>Balise</div><div>Balise 2</div></Button>
     </div>
   );
 }
