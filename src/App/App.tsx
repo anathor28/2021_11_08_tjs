@@ -10,7 +10,7 @@ function App() {
         console.log('Le button de App est clické', arg);
       }}><div>Balise</div><div>Balise 2</div></Button>
       <Button bgColor="tomato" onButtonClick={()=>{}}>Clikes moi dessus</Button>
-      <Button bgColor="green"  onButtonClick={()=>{}}/>
+      <Button bgColor="green" color='black' style={{textDecoration:'underline', fontSize:'32pt'}}  onButtonClick={()=>{}}/>
     </div>
   );
 }
