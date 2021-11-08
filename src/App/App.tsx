@@ -1,16 +1,31 @@
-import React from 'react';
+import React from "react";
 // import logo from './logo.svg';
-import './App.css';
-import Button from './components/Button/Button';
+import "./App.css";
+import Button from "./components/Button/Button";
 
 function App() {
+  let counter = 0;
   return (
     <div className="App">
-      <Button onButtonClick={(arg)=>{
-        console.log('Le button de App est clické', arg);
-      }}><div>Balise</div><div>Balise 2</div></Button>
-      <Button bgColor="tomato" onButtonClick={()=>{}}>Clikes moi dessus</Button>
-      <Button bgColor="green" color='black' style={{textDecoration:'underline', fontSize:'32pt'}}  onButtonClick={()=>{}}/>
+      <h1>Etat de mon compteur de value :{counter}</h1>
+
+      <Button
+        onButtonClick={(arg) => {
+          counter++;
+          console.log(counter);
+        }}
+      >
+        Ajout +1
+      </Button>
+      <Button
+        bgColor="tomato"
+        onButtonClick={() => {
+          counter--;
+          console.log(counter);
+        }}
+      >
+        suppress. -1
+      </Button>
     </div>
   );
 }
