@@ -9,6 +9,10 @@ class App extends React.Component {
     super(props);
     this.state={counter:0};
   }
+  componentDidUpdate(){
+    console.log('ancienne value de state',arguments[1]);
+    console.log('vaeur actuelle post modif de state', this.state);
+  }
   render() {
     return (
       <div className="App">
