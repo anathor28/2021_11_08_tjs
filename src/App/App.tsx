@@ -3,31 +3,37 @@ import React from "react";
 import "./App.css";
 import Button from "./components/Button/Button";
 
-function App() {
-  let counter = 0;
-  return (
-    <div className="App">
-      <h1>Etat de mon compteur de value :{counter}</h1>
+class App extends React.Component {
+  state:any
+  constructor(props){
+    super(props);
+    this.state={counter:0};
+  }
+  render() {
+    return (
+      <div className="App">
+        <h1>Etat de mon compteur de value :{this.state.counter}</h1>
 
-      <Button
-        onButtonClick={(arg) => {
-          counter++;
-          console.log(counter);
-        }}
-      >
-        Ajout +1
-      </Button>
-      <Button
-        bgColor="tomato"
-        onButtonClick={() => {
-          counter--;
-          console.log(counter);
-        }}
-      >
-        suppress. -1
-      </Button>
-    </div>
-  );
+        <Button
+          onButtonClick={(arg) => {
+            this.setState({counter:this.state.counter+1});
+            console.log( this.state.counter);
+          }}
+        >
+          Ajout +1
+        </Button>
+        <Button
+          bgColor="tomato"
+          onButtonClick={() => {
+            this.setState({counter:this.state.counter-1});
+            console.log( this.state.counter);
+          }}
+        >
+          suppress. -1
+        </Button>
+      </div>
+    );
+  }
 }
 
 export default App;
