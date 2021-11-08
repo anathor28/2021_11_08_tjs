@@ -1,16 +1,24 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import style from "./Button.module.css";
 const Button = (props) => {
   const [isClicked, setisClicked] = useState({clicked:false,uneValue:0});
-  console.log(props);
+   
+  useEffect(() => {
+      //cmp didMount & didUpdate
+      console.log(isClicked);
+    return () => {
+     //did unmount
+    };
+  }, [isClicked])
+  
   return (
     <button
       onClick={(evt) => {
           setisClicked({...isClicked, clicked:true});
           setTimeout(()=>{
             setisClicked({...isClicked, clicked:false});
-          },30000);
+          },300);
           props.onButtonClick()
           }}
       className={`${style.Button}${isClicked.clicked?' '+style.clicked:''}`}
