@@ -9,3 +9,10 @@
     border-radius: 8px;
     box-shadow: 15px 15px 25px grey;
 }
+.Button:hover{
+    box-shadow: 10px 10px 25px grey;
+
+}
+.clicked{
+    box-shadow: 5px 5px 25px grey !important;
+}
