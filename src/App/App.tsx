@@ -38,6 +38,7 @@ class App extends React.Component {
   componentDidUpdate() {}
   render() {
     return (
+      <>
       <div className="App">
       <FlexLayout>
         <MemeViewer
@@ -49,6 +50,8 @@ class App extends React.Component {
         <MemeForm/>
         </FlexLayout>
       </div>
+      <div>{JSON.stringify(this.state)}</div>
+      </>
     );
   }
 }
