@@ -1,1 +1,11 @@
-.FlexLayout {}
+.FlexLayout {
+    display: flex;
+    height: calc(100vh - 150px);
+}
+.FlexLayout>*:nth-child(1){
+    flex-grow: 1;
+}
+.FlexLayout>*:nth-child(1)>*{
+    text-align: center;
+    vertical-align: middle;
+}
