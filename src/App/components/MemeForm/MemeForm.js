@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import style from "./MemeForm.module.scss";
 import Button from "../Button/Button";
+import { ACTIONS_CURRENT } from "../../store/store";
+import {connect} from 'react-redux'
 
 /**
  * etat initial du state de MemeForm
@@ -239,5 +241,16 @@ MemeForm.propTypes = {
   images: PropTypes.array.isRequired,
 };
 MemeForm.defaultProps = {};
-
-export default MemeForm;
+const mstp=(state,ownprops) => {
+    return {
+        ...ownprops,
+        currentMeme:state.current,
+        images:state.ressources.images
+    }
+}
+const mdtp=(dispatch)=>{
+    return {
+        onCurrentChange:(meme)=>dispatch({type:ACTIONS_CURRENT.UPDATE_CURRENT, value:meme})
+    }
+}
+export default connect(mstp,mdtp)(MemeForm);
