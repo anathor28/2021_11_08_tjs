@@ -1,3 +1,5 @@
+# install with NPM and node-sass 6
+use after install : yarn upgrade @types/react@latest
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
