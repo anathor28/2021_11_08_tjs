@@ -15,7 +15,7 @@ class App extends React.Component {
         text: " text",
         x: 50,
         y: 50,
-        color: "red",
+        color: '#ACACAC',
         underline: true,
         italic: true,
         fontWeight: "900",
@@ -32,6 +32,13 @@ class App extends React.Component {
           w: 1200,
           h: 637,
         },
+        {
+          id:1,
+          titre:"unplug",
+          url:"img/memeImage/unplug.png",
+          w: 750,
+          h: 808,
+        }
       ],
     };
   }
@@ -47,7 +54,9 @@ class App extends React.Component {
             (e) => e.id === this.state.currentMeme.imageId
           )}
         />
-        <MemeForm/>
+        <MemeForm currentMeme={this.state.currentMeme} images={this.state.images} onCurrentChange={(updatedMeme)=>{
+          this.setState({currentMeme:updatedMeme});
+        }}/>
         </FlexLayout>
       </div>
       <div>{JSON.stringify(this.state)}</div>
