@@ -1,40 +1,48 @@
 import React from "react";
 // import logo from './logo.svg';
 import "./App.css";
-import Button from "./components/Button/Button";
+import MemeViewer from "./components/MemeViewer/MemeViewer";
 
 class App extends React.Component {
-  state:any
-  constructor(props){
+  state: any;
+  constructor(props) {
     super(props);
-    this.state={counter:0};
+    this.state = {
+      currentMeme: {
+        titre: "titre",
+        text: " text",
+        x: 50,
+        y: 50,
+        color: "red",
+        underline: true,
+        italic: true,
+        fontWeight: "900",
+        fontSize: 24,
+        fx: 100,
+        fy: 100,
+        imageId: 0,
+      },
+      images: [
+        {
+          id: 0,
+          titre: "futurama1",
+          url: "img/memeImage/futurama1.jpg",
+          w: 1200,
+          h: 637,
+        },
+      ],
+    };
   }
-  componentDidUpdate(){
-    console.log('ancienne value de state',arguments[1]);
-    console.log('vaeur actuelle post modif de state', this.state);
-  }
+  componentDidUpdate() {}
   render() {
     return (
       <div className="App">
-        <h1>Etat de mon compteur de value :{this.state.counter}</h1>
-
-        <Button
-          onButtonClick={(arg) => {
-            this.setState({counter:this.state.counter+1});
-            console.log( this.state.counter);
-          }}
-        >
-          Ajout +1
-        </Button>
-        <Button
-          bgColor="tomato"
-          onButtonClick={() => {
-            this.setState({counter:this.state.counter-1});
-            console.log( this.state.counter);
-          }}
-        >
-          suppress. -1
-        </Button>
+        <MemeViewer
+          meme={this.state.currentMeme}
+          img={this.state.images.find(
+            (e) => e.id === this.state.currentMeme.imageId
+          )}
+        />
       </div>
     );
   }
