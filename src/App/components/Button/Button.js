@@ -27,6 +27,7 @@ const Button = (props) => {
         color: props.color,
         ...props.style,
       }}
+      type={props.type}
     >
       {props.children}
     </button>
@@ -35,6 +36,7 @@ const Button = (props) => {
 Button.propTypes = {
   children: PropTypes.any.isRequired,
   onButtonClick: PropTypes.func.isRequired,
+  type: PropTypes.string,
   bgColor: PropTypes.string,
   color: PropTypes.string,
   style: PropTypes.object,
