@@ -1,6 +1,8 @@
 import React from "react";
 // import logo from './logo.svg';
 import "./App.css";
+import FlexLayout from "./components/FlexLayout/FlexLayout";
+import MemeForm from "./components/MemeForm/MemeForm";
 import MemeViewer from "./components/MemeViewer/MemeViewer";
 
 class App extends React.Component {
@@ -37,12 +39,15 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
+      <FlexLayout>
         <MemeViewer
           meme={this.state.currentMeme}
           img={this.state.images.find(
             (e) => e.id === this.state.currentMeme.imageId
           )}
         />
+        <MemeForm/>
+        </FlexLayout>
       </div>
     );
   }

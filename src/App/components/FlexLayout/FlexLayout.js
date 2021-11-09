@@ -2,14 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './FlexLayout.module.scss';
 
-const FlexLayout = () => (
+const FlexLayout = (props) => (
   <div className={styles.FlexLayout} data-testid="FlexLayout">
-    FlexLayout Component
+    {props.children}
   </div>
 );
 
-FlexLayout.propTypes = {};
-
-FlexLayout.defaultProps = {};
+FlexLayout.propTypes = {
+  children: PropTypes.array.isRequired,
+};
 
 export default FlexLayout;
