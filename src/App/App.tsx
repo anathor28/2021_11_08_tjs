@@ -4,15 +4,10 @@ import "./App.css";
 import FlexLayout from "./components/FlexLayout/FlexLayout";
 import MemeForm from "./components/MemeForm/MemeForm";
 import MemeViewer from "./components/MemeViewer/MemeViewer";
-
-class App extends React.Component {
-  state: any;
-  constructor(props) {
-    super(props);
-    this.state = {
-      currentMeme: {
-        titre: "titre",
-        text: " text",
+import { ADR_REST, RESSOURCES } from "./config/config";
+const initialCurrentMeme={
+        titre: "",
+        text: "",
         x: 50,
         y: 50,
         color: '#ACACAC',
@@ -23,24 +18,26 @@ class App extends React.Component {
         fx: 100,
         fy: 100,
         imageId: 0,
-      },
-      images: [
-        {
-          id: 0,
-          titre: "futurama1",
-          url: "img/memeImage/futurama1.jpg",
-          w: 1200,
-          h: 637,
-        },
-        {
-          id:1,
-          titre:"unplug",
-          url:"img/memeImage/unplug.png",
-          w: 750,
-          h: 808,
-        }
-      ],
+      };
+class App extends React.Component {
+  state: any;
+  constructor(props) {
+    super(props);
+    this.state = {
+      currentMeme: initialCurrentMeme,
+      images: [],
+      memes:[]
     };
+  }
+  componentDidMount(){
+    const f1=fetch(`${ADR_REST}${RESSOURCES.memes}`).then(f=>f.json());
+    const f2=fetch(`${ADR_REST}${RESSOURCES.images}`).then(f=>f.json());
+    Promise.all([f1,f2]).then(arrResp=>{
+      this.setState({
+        images:arrResp[1],
+        memes:arrResp[0]
+      });
+    });
   }
   componentDidUpdate() {}
   render() {
