@@ -1,0 +1,35 @@
+{
+  "memes": [
+    {
+      "id": 0,
+      "titre": "titre",
+      "text": " text",
+      "x": 50,
+      "y": 50,
+      "color": "#ACACAC",
+      "underline": true,
+      "italic": true,
+      "fontWeight": "900",
+      "fontSize": 24,
+      "fx": 100,
+      "fy": 100,
+      "imageId": 0
+    }
+  ],
+  "images": [
+    {
+      "id": 0,
+      "titre": "futurama1",
+      "url": "img/memeImage/futurama1.jpg",
+      "w": 1200,
+      "h": 637
+    },
+    {
+      "id": 1,
+      "titre": "unplug",
+      "url": "img/memeImage/unplug.png",
+      "w": 750,
+      "h": 808
+    }
+  ]
+}
