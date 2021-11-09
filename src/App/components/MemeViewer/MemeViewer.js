@@ -3,10 +3,10 @@ import PropTypes from "prop-types";
 import styles from "./MemeViewer.module.scss";
 
 const MemeViewer = (props) => {
-  console.log(props);
+  console.log('memeViewer',props);
   return (
-    <svg className={styles.MemeViewer} data-testid="MemeViewer" viewBox={`0 0 ${props.img.w} ${props.img.h}`}>
-      <image href={props.img.url} />
+    <svg className={styles.MemeViewer} data-testid="MemeViewer" viewBox={`0 0 ${props.img?props.img.w:1000} ${props.img?props.img.h:1000}`}>
+     {props.img && <image href={props.img.url} />}
       <text
         x={props.meme.x}
         y={props.meme.y}
@@ -27,6 +27,7 @@ MemeViewer.propTypes = {
   img: PropTypes.object,
 };
 
-MemeViewer.defaultProps = {};
+MemeViewer.defaultProps = {
+};
 
 export default MemeViewer;
