@@ -8,6 +8,7 @@ export const ACTIONS_RESSOURCES = Object.freeze({
   FILL_IMAGES: "FILL_IMAGES",
   FILL_MEMES: "FILL_MEMES",
   ADD_MEME: "ADD_MEME",
+  //SELECT_MEME_TO_CURRENT:'SELECT_MEME_TO_CURRENT,'
 });
 /**
  * Reducer de l'etat des ressources
@@ -37,7 +38,14 @@ const ressourcesReducer = (state = initialState, action) => {
     case ACTIONS_RESSOURCES.FILL_MEMES:
       return { ...state, memes: [...action.values] };
     case ACTIONS_RESSOURCES.ADD_MEME:
-      return { ...state, memes: [...state.memes, action.value] };
+        const index=state.memes.findIndex(e=>e.id===action.value.id);
+        if(index===-1){return { ...state, memes: [...state.memes, action.value] };}
+        else{
+           return  { ...state, memes: [...state.memes.slice(0,index),action.value,...state.memes.slice(index+1)] };
+        }
+    // case ACTIONS_RESSOURCES.SELECT_MEME_TO_CURRENT:
+    //     store.dispatch({type:ACTIONS_CURRENT.UPDATE_CURRENT, value: state.memes.find(e=>e.id===action.value)});
+    //   return state;
     default:
       return state;
   }
@@ -60,6 +68,7 @@ export const initialCurrentMeme = {
 export const ACTIONS_CURRENT = Object.freeze({
   UPDATE_CURRENT: "UPDATE_CURRENT",
   CLEAR_CURRENT: "CLEAR_CURRENT",
+  SAVE_CURRENT: "SAVE_CURRENT"
 });
 const currentReducer = (state = initialCurrentMeme, action) => {
   console.log("call de currentReducer", action.type);
@@ -68,13 +77,28 @@ const currentReducer = (state = initialCurrentMeme, action) => {
       return { ...state, ...action.value };
     case ACTIONS_CURRENT.CLEAR_CURRENT:
       return { ...initialCurrentMeme };
+    case ACTIONS_CURRENT.SAVE_CURRENT:
+        //fetch conditionnel si ID defined on met à jour si ID undefined on post un nouveau
+        fetch(`${ADR_REST}${RESSOURCES.memes}${undefined!==state.id?'/'+state.id:''}`, {
+            method:undefined!==state.id?'PUT':'POST',
+            headers:{
+                "Content-Type":"application/json"
+            },
+            body:JSON.stringify(state)
+        })  
+            .then(f=>f.json())
+            .then(obj=>{
+                store.dispatch({type:ACTIONS_RESSOURCES.ADD_MEME,value:obj});
+            })
+        return state;
     default:
       return state;
   }
 };
 
 const store = createStore(
-  combineReducers({ ressources: ressourcesReducer, current: currentReducer })
+  combineReducers({ ressources: ressourcesReducer, current: currentReducer }),
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
 
 store.subscribe(() => {
