@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import style from "./MemeForm.module.scss";
 import Button from "../Button/Button";
-import { ACTIONS_CURRENT } from "../../store/store";
+import { ACTIONS_CURRENT, ACTIONS_RESSOURCES } from "../../store/store";
 import {connect} from 'react-redux'
 
 /**
@@ -23,7 +23,10 @@ const MemeForm = (props) => {
   // }, [state]);
   return (
     <div className={style.MemeForm} data-testid="MemeForm">
-      <form>
+      <form onSubmit={(evt)=>{
+          evt.preventDefault();
+          props.saveCurrent();
+      }}>
         <input
           type="text"
           placeholder="saisissez le titre"
@@ -249,7 +252,9 @@ const mstp=(state,ownprops) => {
 }
 const mdtp=(dispatch)=>{
     return {
-        onCurrentChange:(meme)=>dispatch({type:ACTIONS_CURRENT.UPDATE_CURRENT, value:meme})
+        onCurrentChange:(meme)=>dispatch({type:ACTIONS_CURRENT.UPDATE_CURRENT, value:meme}),
+        selectMeme:(idmeme)=>dispatch({type:ACTIONS_RESSOURCES.SELECT_MEME_TO_CURRENT, value:idmeme}),
+        saveCurrent:()=>dispatch({type:ACTIONS_CURRENT.SAVE_CURRENT}),
     }
 }
 export default connect(mstp,mdtp)(MemeForm);
