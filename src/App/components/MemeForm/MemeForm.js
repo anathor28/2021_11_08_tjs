@@ -1,4 +1,3 @@
-import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import style from "./MemeForm.module.scss";
 import Button from "../Button/Button";

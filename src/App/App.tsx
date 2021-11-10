@@ -4,8 +4,6 @@ import "./App.css";
 import FlexLayout from "./components/FlexLayout/FlexLayout";
 import MemeForm from "./components/MemeForm/MemeForm";
 import MemeViewer from "./components/MemeViewer/MemeViewer";
-import { ADR_REST, RESSOURCES } from "./config/config";
-import { ACTIONS_RESSOURCES, initialCurrentMeme } from "./store/store";
 import { connect } from "react-redux";
 import ThumbnailLayout from "./components/ThumbnailLayout/ThumbnailLayout";
 import { Switch, Route, Link, Redirect } from "react-router-dom";
