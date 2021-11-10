@@ -8,6 +8,7 @@ import { connect } from "react-redux";
 import ThumbnailLayout from "./components/ThumbnailLayout/ThumbnailLayout";
 import { Switch, Route, Link, Redirect } from "react-router-dom";
 import Navbar from "./components/Navbar/Navbar";
+import MemeCurrentSelector from "./components/MemeCurrentSelector/MemeCurrentSelector";
 
 const App = (props) => {
   return (
@@ -23,11 +24,12 @@ const App = (props) => {
           <Route path="/thumbnail">
             <ThumbnailLayout>
               {props.memes.map((e, i) => (
+                <Link to={"/editor/"+e.id}   key={"thumbnail-" + i}>
                 <MemeViewer
                   meme={e}
                   img={props.images.find((ee) => ee.id === e.imageId)}
-                  key={"thumbnail-" + i}
                 />
+                </Link>
               ))}
             </ThumbnailLayout>
           </Route>
@@ -41,6 +43,8 @@ const App = (props) => {
             </FlexLayout>
           </Route>
           <Route path="/editor/:idmeme">
+            <h1>editor of existing meme</h1>
+            <MemeCurrentSelector>
             <FlexLayout>
               <MemeViewer
                 meme={props.current}
@@ -48,6 +52,7 @@ const App = (props) => {
               />
               <MemeForm />
             </FlexLayout>
+            </MemeCurrentSelector>
           </Route>
           {/* Redirection sur un chemin */}
           <Route path="/redirected">
