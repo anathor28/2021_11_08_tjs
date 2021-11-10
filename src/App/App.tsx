@@ -33,7 +33,7 @@ const App = (props) => {
               ))}
             </ThumbnailLayout>
           </Route>
-          <Route path="/editor">
+          <Route path="/editor" exact>
             <FlexLayout>
               <MemeViewer
                 meme={props.current}
