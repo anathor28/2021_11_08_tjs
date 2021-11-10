@@ -8,7 +8,7 @@ import { ADR_REST, RESSOURCES } from "./config/config";
 import { ACTIONS_RESSOURCES, initialCurrentMeme } from "./store/store";
 import { connect } from "react-redux";
 import ThumbnailLayout from "./components/ThumbnailLayout/ThumbnailLayout";
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, Link, Redirect } from "react-router-dom";
 import Navbar from "./components/Navbar/Navbar";
 
 const App = (props) => {
@@ -17,7 +17,7 @@ const App = (props) => {
       <Navbar />
       <div className="App">
         <Switch>
-          <Route path="/">
+          <Route path="/" exact>
             <h1>Deguemer mat in breizh meme generator</h1>
             <h2>Selectionner dans le menu</h2>
             le liens a afficher dans la page
@@ -33,16 +33,24 @@ const App = (props) => {
               ))}
             </ThumbnailLayout>
           </Route>
-
           <Route path="/editor">
             <FlexLayout>
               <MemeViewer
                 meme={props.current}
                 img={props.images.find((e) => e.id === props.current.imageId)}
               />
-
               <MemeForm />
             </FlexLayout>
+          </Route>
+          {/* Redirection sur un chemin */}
+          <Route path="/redirected">
+            <Redirect to="/" />
+          </Route>
+          {/* ramasse miette d'url invalid */}
+          <Route path="/">
+            <h1>ERROR 404 !!! NOT FOUND !!!</h1>
+            Nothing to view here ....
+            <Link to="/">Retour accueil</Link>
           </Route>
         </Switch>
       </div>
