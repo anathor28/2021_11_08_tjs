@@ -1,0 +1,23 @@
+.Navbar {
+    height: 40px;
+    background-color: #5050a0;
+}
+ul {
+    list-style: none;
+    display: flex;
+    margin:0 !important;
+}
+li:hover {
+    background-color: #7070a0;
+
+}
+li {
+ 
+    border-right: 1px solid white;
+    padding:0 30px;
+}
+li * {
+    color: white;
+    font-weight: 900;
+    font-size: 30px;
+}
