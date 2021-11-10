@@ -96,8 +96,27 @@ const currentReducer = (state = initialCurrentMeme, action) => {
   }
 };
 
+const modalInitialState = {
+  label:'',
+  children:null,
+  show:false
+}
+
+const modalReducer=(state = modalInitialState, action) => {
+  switch (action.type) {
+
+  case 'SHOW_MODAL':
+    return {...state,label:action.label,chidren:action.children, show:true };
+  case 'HIDE_MODAL':
+      return {...modalInitialState};
+  default:
+    return state
+  }
+}
+
+
 const store = createStore(
-  combineReducers({ ressources: ressourcesReducer, current: currentReducer }),
+  combineReducers({ ressources: ressourcesReducer, current: currentReducer, modal:modalReducer }),
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
 
