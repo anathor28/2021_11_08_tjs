@@ -42,6 +42,15 @@ const App = (props) => {
               <MemeForm />
             </FlexLayout>
           </Route>
+          <Route path="/editor/:idmeme">
+            <FlexLayout>
+              <MemeViewer
+                meme={props.current}
+                img={props.images.find((e) => e.id === props.current.imageId)}
+              />
+              <MemeForm />
+            </FlexLayout>
+          </Route>
           {/* Redirection sur un chemin */}
           <Route path="/redirected">
             <Redirect to="/" />
@@ -54,7 +63,7 @@ const App = (props) => {
           </Route>
         </Switch>
       </div>
-      <div>{JSON.stringify(props)}</div>
+      {/* <div>{JSON.stringify(props)}</div> */}
     </>
   );
 };
