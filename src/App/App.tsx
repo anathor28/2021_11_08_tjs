@@ -8,7 +8,7 @@ import { ADR_REST, RESSOURCES } from "./config/config";
 import { ACTIONS_RESSOURCES, initialCurrentMeme } from "./store/store";
 import { connect } from "react-redux";
 import ThumbnailLayout from "./components/ThumbnailLayout/ThumbnailLayout";
-import { Routes, Route } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 import Navbar from "./components/Navbar/Navbar";
 
 const App = (props) => {
@@ -16,14 +16,13 @@ const App = (props) => {
     <>
       <Navbar />
       <div className="App">
-        <Routes>
-          <Route path="/*" element={
-            <>
-              <h1>Deguemer mat in breizh meme generator</h1>
-              <h2>Selectionner dans le menu</h2>
-              le liens a afficher dans la page
-            </>}/>
-          <Route path="/thumbnail" element={
+        <Switch>
+          <Route path="/">
+            <h1>Deguemer mat in breizh meme generator</h1>
+            <h2>Selectionner dans le menu</h2>
+            le liens a afficher dans la page
+          </Route>
+          <Route path="/thumbnail">
             <ThumbnailLayout>
               {props.memes.map((e, i) => (
                 <MemeViewer
@@ -32,9 +31,10 @@ const App = (props) => {
                   key={"thumbnail-" + i}
                 />
               ))}
-            </ThumbnailLayout>}/>
-          
-          <Route path="/editor" element={
+            </ThumbnailLayout>
+          </Route>
+
+          <Route path="/editor">
             <FlexLayout>
               <MemeViewer
                 meme={props.current}
@@ -42,8 +42,9 @@ const App = (props) => {
               />
 
               <MemeForm />
-            </FlexLayout>}/>
-        </Routes>
+            </FlexLayout>
+          </Route>
+        </Switch>
       </div>
       <div>{JSON.stringify(props)}</div>
     </>
