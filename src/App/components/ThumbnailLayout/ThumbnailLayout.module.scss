@@ -1,0 +1,11 @@
+.ThumbnailLayout {
+    display: flex;
+    // flex-direction: column;
+    justify-content: space-between;
+    padding: 10px 0;
+    height:calc(100vh - 150px);
+    overflow-y: auto;
+}
+.ThumbnailLayout>svg{
+    max-width: 23vw;
+}
