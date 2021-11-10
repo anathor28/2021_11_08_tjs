@@ -6,6 +6,9 @@
     height:calc(100vh - 150px);
     overflow-y: auto;
 }
-.ThumbnailLayout>svg{
+.ThumbnailLayout svg{
     max-width: 23vw;
+}
+.ThumbnailLayout>*{
+    width:100%;
 }
